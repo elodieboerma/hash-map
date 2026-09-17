@@ -231,5 +231,13 @@ class HashMap {
         this.size = 0;
     }
 
-    
+    keys() {
+        let keysArray = [];
+        for (let i = 0; i < this.capacity; i++) {
+            if (nodeAt(i) != undefined) {
+                keysArray.push(nodeAt(i));
+            }
+        }
+        return keysArray;
+    }
 }
