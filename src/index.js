@@ -22,6 +22,20 @@ class LinkedList {
       current.next = newNode;
     }
   }
+  nodeAt(index) {
+    //returns undefined if no node at index
+    if (this.head == null || index >= this.size()) {
+      return undefined;
+    } else {
+      let current = this.head;
+      for (var i = 0; i < index + 1; i++) {
+        if (i == index) {
+          return current;
+        }
+        current = current.next;
+      }
+    }
+  }
 }
 
 
@@ -54,4 +68,14 @@ class HashMap {
         }
         bucket.append(new Node(value));
     }
+
+    get(key) {
+        let index = this.hash(key);
+        if (nodeAt(index) == undefined) {
+            return null;
+        }
+        return nodeAt(index).head.next.value;
+    }
+
+    
 }
