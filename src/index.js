@@ -240,4 +240,14 @@ class HashMap {
         }
         return keysArray;
     }
+
+    values() {
+        let valuesArray = [];
+        let keysArray = this.keys();
+        for (key in keysArray) {
+            let value = this.get(key);
+            valuesArray.push(value);
+        }
+        return valuesArray;
+    }
 }
