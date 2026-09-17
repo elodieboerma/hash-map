@@ -250,4 +250,14 @@ class HashMap {
         }
         return valuesArray;
     }
+
+    entries() {
+        let keysArray = this.keys();
+        let valuesArray = this.values();
+        let entriesArray = [];
+        for (let i = 0; i < keysArray.length; i++) {
+            entriesArray.push([keysArray[i], valuesArray[i]]);
+        }
+        return entriesArray;
+    }
 }
