@@ -77,5 +77,13 @@ class HashMap {
         return nodeAt(index).head.next.value;
     }
 
+    has(key) {
+        let index = this.hash(key);
+        if (nodeAt(index) == undefined) {
+            return false;
+        }
+        return true;
+    }
+
     
 }
