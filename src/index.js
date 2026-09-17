@@ -227,5 +227,9 @@ class HashMap {
         return this.size;
     }
 
+    clear() {
+        this.size = 0;
+    }
+
     
 }
