@@ -199,15 +199,15 @@ export class HashMap {
 
     get(key) {
         let index = this.hash(key);
-        if (nodeAt(index) == undefined) {
+        if (this.nodeAt(index) == undefined) {
             return null;
         }
-        return nodeAt(index).head.next.value;
+        return this.nodeAt(index).head.next.value;
     }
 
     has(key) {
         let index = this.hash(key);
-        if (nodeAt(index) == undefined) {
+        if (this.nodeAt(index) == undefined) {
             return false;
         }
         return true;
@@ -215,10 +215,10 @@ export class HashMap {
 
     remove(key) {
         let index = this.hash(key);
-        if (nodeAt(index) == undefined) {
+        if (this.nodeAt(index) == undefined) {
             return false;
         } else {
-            nodeAt(index).pop();
+            this.nodeAt(index).pop();
             return true;
         }
     }
@@ -234,8 +234,8 @@ export class HashMap {
     keys() {
         let keysArray = [];
         for (let i = 0; i < this.capacity; i++) {
-            if (nodeAt(i) != undefined) {
-                keysArray.push(nodeAt(i));
+            if (this.nodeAt(i) != undefined) {
+                keysArray.push(this.nodeAt(i));
             }
         }
         return keysArray;
