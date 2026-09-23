@@ -169,13 +169,13 @@ class LinkedList {
 
 export class HashMap {
     constructor() {
+        this.array = new Array(16);
         this.capacity = 16;
         this.loadFactor = 0.75;
     }
 
     hash(key) {
         let hashCode = 0;
-    
         let primeNumber  = 31;
         for (let i = 0; i < key.length; i++) {
             hashCode = primeNumber * hashCode + key.charCodeAt(i);
@@ -186,12 +186,12 @@ export class HashMap {
     }
 
     set(key, value) {
-        let index = this.hash(key);
-        if (index < 0 || index >= buckets.length) {
-  throw new Error("Trying to access index out of bounds");
-}
-        let bucket = this.at[index];
-        if (this.capacity * this.loadFactor >= this.size) {
+        let index = this.hash(key); //index is a #
+        let bucket = this.array[index];
+        if (index < 0 || index >= this.length) {
+          throw new Error("Trying to access index out of bounds");
+        }
+        if (this.capacity * this.loadFactor >= this.length) {
             this.capacity *= 2;
         }
         if (bucket == undefined) {
