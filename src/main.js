@@ -19,7 +19,7 @@ console.log(test);
 console.log(test.capacity);
 console.log(test.length);
 
-test.set('apple', 'pink')
+/*test.set('apple', 'pink')
 test.set('dog', 'red')
 test.set('kite', 'brown')
 console.log(test);
@@ -67,3 +67,4 @@ console.log(test.values());
 
 //for entries()
 console.log(test.entries());
+*/

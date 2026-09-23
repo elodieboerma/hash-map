@@ -170,7 +170,7 @@ class LinkedList {
 export class HashMap {
     constructor() {
         this.capacity = 16;
-        this.array = new Array(this.capacity);
+        this.buckets = new Array(this.capacity);
         this.loadFactor = 0.75;
     }
 
@@ -187,8 +187,9 @@ export class HashMap {
 
     set(key, value) {
         let index = this.hash(key); //index is a #
-        let bucket = this.array[index];
-        if (index < 0 || index >= this.length) {
+        let bucket = this.buckets[index];
+        console.log(`type of bucket: ${typeof bucket}`);
+        if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
         if (this.capacity * this.loadFactor >= this.length) {
@@ -197,7 +198,10 @@ export class HashMap {
         if (bucket == undefined) {
             bucket = new LinkedList();
         }
-        bucket.append(new Node(value));
+        let newNode = new Node(value);
+        //rn if not going into if statement above, bucket is still equal to the object at the array index
+        bucket.append(newNode);
+        console.log(bucket);
     }
 
     get(key) {
