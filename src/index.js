@@ -169,8 +169,8 @@ class LinkedList {
 
 export class HashMap {
     constructor() {
-        this.array = new Array(16);
         this.capacity = 16;
+        this.array = new Array(this.capacity);
         this.loadFactor = 0.75;
     }
 
