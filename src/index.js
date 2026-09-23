@@ -199,9 +199,8 @@ export class HashMap {
             bucket = new LinkedList();
         }
         let newNode = new Node(value);
-        //rn if not going into if statement above, bucket is still equal to the object at the array index
         bucket.append(newNode);
-        console.log(bucket);
+        //console.log(bucket); //works, but HashMap doesn't show linked lists
     }
 
     get(key) {
