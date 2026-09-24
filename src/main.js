@@ -17,7 +17,7 @@ test.set('lion', 'golden')
 
 console.log(test);
 console.log(test.capacity);
-console.log(test.length);
+test.lengthOfArray();
 
 /*test.set('apple', 'pink')
 test.set('dogs', 'red')

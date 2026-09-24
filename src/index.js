@@ -186,12 +186,12 @@ export class HashMap {
     }
 
     set(key, value) {
-        let index = this.hash(key); //index is a #
+        let index = this.hash(key);
         let bucket = this.buckets[index];
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
-        if (this.capacity * this.loadFactor >= this.length) {
+        if (this.capacity * this.loadFactor >= this.lengthOfArray) {
             this.capacity *= 2;
         }
         if (bucket == undefined) {
@@ -206,8 +206,8 @@ export class HashMap {
     get(key) {
         let index = this.hash(key);
         if (index < 0 || index >= buckets.length) {
-  throw new Error("Trying to access index out of bounds");
-}
+          throw new Error("Trying to access index out of bounds");
+        }
         if (this.nodeAt(index) == undefined) {
             return null;
         }
@@ -238,8 +238,16 @@ export class HashMap {
         }
     }
 
-    length() {
-        return this.size;
+    lengthOfArray() {
+      let count = 0;
+      for (let i = 0; i < this.capacity; i++) {
+        let bucket = this.buckets[i];
+        if (bucket != undefined) {
+          count++;
+        }
+      }
+      console.log(`count: ${count}`);
+      return count;
     }
 
     clear() {
