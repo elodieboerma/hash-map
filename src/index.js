@@ -188,7 +188,6 @@ export class HashMap {
     set(key, value) {
         let index = this.hash(key); //index is a #
         let bucket = this.buckets[index];
-        console.log(`type of bucket: ${typeof bucket}`);
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
@@ -197,6 +196,7 @@ export class HashMap {
         }
         if (bucket == undefined) {
             bucket = new LinkedList();
+            this.buckets[index] = bucket;
         }
         let newNode = new Node(value);
         bucket.append(newNode);
