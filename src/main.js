@@ -15,18 +15,18 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(test);
-console.log(test.capacity);
+console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
-/*test.set('apple', 'pink')
+//rn another node is just added to each bucket instead of overriding its value
+test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')
 console.log(test);
-console.log(test.capacity);
-console.log(test.length);
+console.log(`capacity: ${test.capacity}`);
+test.lengthOfArray();
 
-test.set('moon', 'silver')
+/*test.set('moon', 'silver')
 console.log(test);
 console.log(test.capacity);
 console.log(test.length);

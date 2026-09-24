@@ -194,13 +194,15 @@ export class HashMap {
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
             this.capacity *= 2;
         }
-        if (bucket == undefined) {
-            bucket = new LinkedList();
-            this.buckets[index] = bucket;
-        }
         let newNode = new Node(value);
-        bucket.append(newNode);
-        console.log(bucket);
+        if (bucket == undefined) {
+          bucket = new LinkedList();
+          this.buckets[index] = bucket;
+          bucket.append(newNode);
+        } else {
+          bucket.head.next = newNode;
+        }
+        
     }
 
     get(key) {
