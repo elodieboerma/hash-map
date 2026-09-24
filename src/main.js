@@ -19,6 +19,7 @@ console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
 //rn another node is just added to each bucket instead of overriding its value
+//confused how/when to override vs adding another node to the bucket
 test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')
@@ -28,8 +29,8 @@ test.lengthOfArray();
 
 /*test.set('moon', 'silver')
 console.log(test);
-console.log(test.capacity);
-console.log(test.length);
+console.log(`capacity: ${test.capacity}`);
+test.lengthOfArray();
 
 test.set('elephant', 'white');
 test.set('grapes', 'green');

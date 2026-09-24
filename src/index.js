@@ -192,7 +192,9 @@ export class HashMap {
           throw new Error("Trying to access index out of bounds");
         }
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
-            this.capacity *= 2;
+          this.capacity *= 2;
+          //then copy existing nodes to buckets of new array and rehash their keys
+          //recursive function for this??
         }
         let newNode = new Node(value);
         if (bucket == undefined) {
