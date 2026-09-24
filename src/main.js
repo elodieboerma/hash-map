@@ -5,10 +5,10 @@ const test = new HashMap();
 test.set('apple', 'red')
 test.set('banana', 'yellow')
 test.set('carrot', 'orange')
-test.set('dog', 'brown')
+test.set('dogs', 'brown')
 test.set('elephant', 'gray')
 test.set('frog', 'green')
-test.set('grape', 'purple')
+test.set('grapes', 'purple')
 test.set('hat', 'black')
 test.set('ice cream', 'white')
 test.set('jacket', 'blue')
@@ -20,7 +20,7 @@ console.log(test.capacity);
 console.log(test.length);
 
 /*test.set('apple', 'pink')
-test.set('dog', 'red')
+test.set('dogs', 'red')
 test.set('kite', 'brown')
 console.log(test);
 console.log(test.capacity);
@@ -32,7 +32,7 @@ console.log(test.capacity);
 console.log(test.length);
 
 test.set('elephant', 'white');
-test.set('grape', 'green');
+test.set('grapes', 'green');
 test.set('jacket', 'red');
 console.log(test);
 console.log(test.capacity);

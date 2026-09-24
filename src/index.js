@@ -200,7 +200,7 @@ export class HashMap {
         }
         let newNode = new Node(value);
         bucket.append(newNode);
-        //console.log(bucket); //works, but HashMap doesn't show linked lists
+        console.log(bucket);
     }
 
     get(key) {
