@@ -170,7 +170,7 @@ class LinkedList {
 export class HashMap {
     constructor() {
         this.capacity = 16;
-        this.buckets = new Array(this.capacity);
+        this.buckets = [];
         this.loadFactor = 0.75;
     }
 
@@ -181,7 +181,7 @@ export class HashMap {
             hashCode = primeNumber * hashCode + key.charCodeAt(i);
             hashCode = hashCode % this.capacity;
         }
-
+        console.log(`${key}: ${hashCode}`);
         return hashCode;
     }
 
