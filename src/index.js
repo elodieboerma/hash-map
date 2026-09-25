@@ -215,7 +215,7 @@ export class HashMap {
               } else {
                 newBucket.head.next = bucket;
               }
-              this.set(key,value); //for the new value
+              //this.set(key,value); //for the new value
             }
           }
           //then copy existing nodes to buckets of new array and rehash their keys
