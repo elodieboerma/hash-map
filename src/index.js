@@ -193,6 +193,23 @@ export class HashMap {
         }
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
+          let buckets = this.buckets;
+          this.buckets = new Array(this.capacity)
+          for (bucket in buckets) {
+            if (bucket != undefined) {
+              let index = this.hash(existingKey);
+              let newBucket = this.buckets[index];
+              //newBucket = bucket;
+              if (newBucket == undefined) {
+                newBucket = new LinkedList();
+                this.buckets[index] = newBucket;
+                newBucket.append(bucket);
+              } else {
+                newBucket.head.next = bucket;
+              }
+              this.set(key,value); //for the new value
+            }
+          }
           //then copy existing nodes to buckets of new array and rehash their keys
           //recursive function for this??
         }
