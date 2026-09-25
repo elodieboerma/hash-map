@@ -191,6 +191,14 @@ export class HashMap {
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
+        let newNode = new Node(value);
+        if (bucket == undefined) {
+          bucket = new LinkedList();
+          this.buckets[index] = bucket;
+          bucket.append(newNode);
+        } else {
+          bucket.head.next = newNode;
+        }
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
           let buckets = this.buckets;
@@ -212,16 +220,7 @@ export class HashMap {
           }
           //then copy existing nodes to buckets of new array and rehash their keys
           //recursive function for this??
-        }
-        let newNode = new Node(value);
-        if (bucket == undefined) {
-          bucket = new LinkedList();
-          this.buckets[index] = bucket;
-          bucket.append(newNode);
-        } else {
-          bucket.head.next = newNode;
-        }
-        
+        }        
     }
 
     get(key) {
