@@ -27,12 +27,12 @@ console.log(test);
 console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
-/*test.set('moon', 'silver')
+test.set('moons', 'silver')
 console.log(test);
 console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
-test.set('elephant', 'white');
+/*test.set('elephant', 'white');
 test.set('grapes', 'green');
 test.set('jacket', 'red');
 console.log(test);
