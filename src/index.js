@@ -192,9 +192,8 @@ export class HashMap {
           this.table[index] = [key, value];
           this.size++;
         }*/
-        //need to be storing both keys and values together, maybe use an object
         let index = this.hash(key);
-        let bucket;// = this.buckets[index];
+        let bucket;
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
@@ -214,7 +213,6 @@ export class HashMap {
             if (bucket != undefined) {
               let index = this.hash(existingKey);
               let newBucket = this.buckets[index];
-              //newBucket = bucket;
               if (newBucket == undefined) {
                 newBucket = new LinkedList();
                 this.buckets[index] = newBucket;
@@ -222,7 +220,6 @@ export class HashMap {
               } else {
                 newBucket.head.next = bucket;
               }
-              //this.set(key,value); //for the new value
             }
           }
           //then copy existing nodes to buckets of new array and rehash their keys
