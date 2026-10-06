@@ -18,9 +18,8 @@ test.set('lion', 'golden')
 console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
-//rn another node is just added to each bucket instead of overriding its value
-//need to be able to overwrite the value of an existing key, and add a new node for
-//the value of a new key
+//need to be able to add a new value for a new key in addition to being able to 
+//overwrite the value of an existing key
 test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')

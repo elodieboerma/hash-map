@@ -186,8 +186,15 @@ export class HashMap {
     }
 
     set(key, value) {
+        /*simplified code:
+        add(key, value) {
+          const index = this._hash(key);
+          this.table[index] = [key, value];
+          this.size++;
+        }*/
+        //need to be storing both keys and values together, maybe use an object
         let index = this.hash(key);
-        let bucket = this.buckets[index];
+        let bucket;// = this.buckets[index];
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
@@ -197,7 +204,7 @@ export class HashMap {
           this.buckets[index] = bucket;
           bucket.append(newNode);
         } else {
-          bucket.head.next = newNode;
+          bucket.head.next = {key, value: newNode};
         }
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
@@ -216,13 +223,6 @@ export class HashMap {
                 newBucket.head.next = bucket;
               }
               //this.set(key,value); //for the new value
-              /*simplified code:
-                add(key, value) {
-                  const index = this._hash(key);
-                  this.table[index] = [key, value];
-                  this.size++;
-                }*/
-              //need to be storing both keys and values together, maybe use an object
             }
           }
           //then copy existing nodes to buckets of new array and rehash their keys
