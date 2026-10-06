@@ -19,7 +19,8 @@ console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
 //rn another node is just added to each bucket instead of overriding its value
-//confused how/when to override vs adding another node to the bucket
+//need to be able to overwrite the value of an existing key, and add a new node for
+//the value of a new key
 test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')

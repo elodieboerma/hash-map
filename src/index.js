@@ -216,6 +216,13 @@ export class HashMap {
                 newBucket.head.next = bucket;
               }
               //this.set(key,value); //for the new value
+              /*simplified code:
+                add(key, value) {
+                  const index = this._hash(key);
+                  this.table[index] = [key, value];
+                  this.size++;
+                }*/
+              //need to be storing both keys and values together, maybe use an object
             }
           }
           //then copy existing nodes to buckets of new array and rehash their keys
