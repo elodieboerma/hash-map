@@ -217,9 +217,10 @@ export class HashMap {
         }        
     }
 
+    //nodeAt() is a LinkedList method, not a HashMap method
     get(key) {
         let index = this.hash(key);
-        if (index < 0 || index >= buckets.length) {
+        if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
         if (this.nodeAt(index) == undefined) {
@@ -230,7 +231,7 @@ export class HashMap {
 
     has(key) {
         let index = this.hash(key);
-        if (index < 0 || index >= buckets.length) {
+        if (index < 0 || index >= this.buckets.length) {
   throw new Error("Trying to access index out of bounds");
 }
         if (this.nodeAt(index) == undefined) {
@@ -268,7 +269,6 @@ export class HashMap {
         this.buckets = [];
     }
 
-    //nodeAt() and toString() are LinkedList methods, not HashMap methods
     keys() {
         let keysArray = [];
         for (let i = 0; i < this.buckets.length; i++) {
@@ -288,8 +288,8 @@ export class HashMap {
     values() {
         let valuesArray = [];
         let keysArray = this.keys();
-        for (key in keysArray) {
-            let value = this.get(key);
+        for (let key = 0; key < keysArray.length; key++) {
+            let value = this.get(keysArray[key]);
             valuesArray.push(value);
         }
         return valuesArray;
