@@ -229,7 +229,10 @@ export class HashMap {
             }
           }
           //then delete this hashmap somehow and make sure all actions are now
-          //performed on the new hashmap??
+          //performed on the new hashmap?? or just empty this hashmap and then add
+          //the new hashmap info to it?
+          this.buckets = newHashMap.buckets;
+          this.capacity = newHashMap.capacity;
         }        
     }
 
