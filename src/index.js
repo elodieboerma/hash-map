@@ -202,7 +202,7 @@ export class HashMap {
         console.log(`capacity (${this.capacity}) * load factor (${this.loadFactor})`);
         
         //if array length exceeds load factor, copy to new hashmap with double capactiy
-        if (this.capacity * this.loadFactor > this.lengthOfArray()) {
+        if (this.capacity * this.loadFactor < this.lengthOfArray()) {
           console.log(`Current capacity (${this.capacity}) exceeds load factor (${this.loadFactor})`);
           this.capacity *= 2;
           this.clear();
