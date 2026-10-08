@@ -217,17 +217,12 @@ export class HashMap {
         }        
     }
 
-    //nodeAt() is a LinkedList method, not a HashMap method
     get(key) {
         let index = this.hash(key);
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
         let bucket = this.buckets[index];
-        //let node = bucket.nodeAt(0);
-        /*if (this.nodeAt(index) == undefined) {
-            return null;
-        }*/
         bucket.forEach((node) => {
             if (node.key.key === key) {
                 return node.key.value;
