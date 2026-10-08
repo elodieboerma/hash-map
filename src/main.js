@@ -18,8 +18,6 @@ test.set('lion', 'golden')
 console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
-//need to be able to add a new value for a new key
-//currently values are just overwritten even if the key is different
 test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')
@@ -27,6 +25,9 @@ console.log(test);
 console.log(`capacity: ${test.capacity}`);
 test.lengthOfArray();
 
+//need to be able to add a new value for a new key
+//currently values are just overwritten even if the key is different
+//count increases, but capacity does not change
 test.set('moons', 'silver')
 console.log(test);
 console.log(`capacity: ${test.capacity}`);

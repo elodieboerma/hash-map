@@ -168,8 +168,8 @@ class LinkedList {
 
 
 export class HashMap {
-    constructor() {
-        this.capacity = 16;
+    constructor(capacity = 16) {
+        this.capacity = capacity;
         this.buckets = new Array(this.capacity);
         this.loadFactor = 0.75;
     }
@@ -208,7 +208,8 @@ export class HashMap {
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
           let buckets = this.buckets;
-          this.buckets = new Array(this.capacity)
+          //this.buckets = new Array(this.capacity)
+          let newHashMap = new HashMap();
           for (bucket in buckets) {
             if (bucket != undefined) {
               let index = this.hash(existingKey);
