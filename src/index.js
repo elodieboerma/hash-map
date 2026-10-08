@@ -1,5 +1,6 @@
 class Node {
-  constructor(value) {
+  constructor(key, value) {
+    this.key = key;
     this.value = value;
     this.next = null;
   }
@@ -10,8 +11,8 @@ class LinkedList {
   constructor() {
     this.head = null;
   }
-  append(value) {
-    const newNode = new Node(value);
+  append(key, value) {
+    const newNode = new Node(key, value);
     if (this.head == null) {
       this.head = newNode;
     } else {
@@ -22,8 +23,8 @@ class LinkedList {
       current.next = newNode;
     }
   }
-  prepend(value) {
-    const newNode = new Node(value);
+  prepend(key, value) {
+    const newNode = new Node(key, value);
     if (this.head == null) {
       this.head = newNode;
     } else {
@@ -197,7 +198,7 @@ export class HashMap {
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
-        let newNode = new Node(value);
+        let newNode = new Node(key, value);
         if (bucket == undefined) {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
@@ -229,7 +230,7 @@ export class HashMap {
                 newBucketLinkedList = new LinkedList();
                 newBucket.append(newBucketLinkedList);
               } else {*/
-                newBucket.append(bucket);
+                newBucket.append(bucket); //or newBucket = bucket??
               //}
             }
           }
