@@ -203,7 +203,7 @@ export class HashMap {
         if (this.capacity * this.loadFactor > this.lengthOfArray) {
           console.log(`capacity: ${this.capacity}`);
           this.capacity *= 2;
-          let buckets = this.buckets;
+          /*let buckets = this.buckets;
           let newHashMap = new HashMap(this.capacity);
           //for (bucket in buckets) {
           for (let i = 0; i < buckets.length; i++) {
@@ -222,15 +222,21 @@ export class HashMap {
               /*if (newBucket == undefined) {
                 newBucketLinkedList = new LinkedList();
                 newBucket.append(newBucketLinkedList);
-              } else {*/
+              } else {
                 newBucket.append(bucket); //or newBucket = bucket??
               //}
             }
-          }
+          }*/
           //make sure hashmap is updated to new buckets and capacity
           this.clear();
-          this.buckets = newHashMap.buckets;
-          this.capacity = newHashMap.capacity;
+          console.log(this);
+          let entriesArray = this.entries();
+          for (let i = 0; i < entriesArray.length; i++) {
+            let entry = entriesArray[i];
+            let key = entry[0];
+            let value = entry[1];
+            this.set(key, value);
+          }
         }        
     }
 
@@ -285,6 +291,7 @@ export class HashMap {
         this.buckets = [];
     }
 
+    //correct so that it works to run through each bucket, not just on buckets
     keys() {
         let keysArray = [];
         for (let i = 0; i < this.capacity; i++) {
@@ -295,6 +302,7 @@ export class HashMap {
         return keysArray;
     }
 
+    //correct so that it works to run through each bucket, not just on buckets
     values() {
         let valuesArray = [];
         let keysArray = this.keys();
@@ -305,6 +313,7 @@ export class HashMap {
         return valuesArray;
     }
 
+    //correct so that it works to run through each bucket, not just on buckets
     entries() {
         let keysArray = this.keys();
         let valuesArray = this.values();
