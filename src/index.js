@@ -205,26 +205,31 @@ export class HashMap {
         } else {
           bucket.head.next = {key, value: newNode};
         }
+        //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
           let buckets = this.buckets;
-          //this.buckets = new Array(this.capacity)
-          let newHashMap = new HashMap();
+          let newHashMap = new HashMap(this.capacity);
           for (bucket in buckets) {
             if (bucket != undefined) {
-              let index = this.hash(existingKey);
-              let newBucket = this.buckets[index];
+              //update existingKey once nodes are created with both keys and values
+              //also make sure to copy all nodes in the linked list, not just the first key/value pair
+              for (let node = bucket.head; node != null; node = node.next) {
+                let existingKey = node.key;
+                let index = newHashMap.hash(existingKey);
+                var newBucket = newHashMap.buckets[index];
+              }
+              //Are both parts of this really needed?
               if (newBucket == undefined) {
-                newBucket = new LinkedList();
-                this.buckets[index] = newBucket;
-                newBucket.append(bucket);
+                newBucketLinkedList = new LinkedList();
+                newBucket.append(newBucketLinkedList);
               } else {
-                newBucket.head.next = bucket;
+                newBucket.append(bucket);
               }
             }
           }
-          //then copy existing nodes to buckets of new array and rehash their keys
-          //recursive function for this??
+          //then delete this hashmap somehow and make sure all actions are now
+          //performed on the new hashmap??
         }        
     }
 
