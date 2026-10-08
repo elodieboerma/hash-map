@@ -187,12 +187,6 @@ export class HashMap {
     }
 
     set(key, value) {
-        /*simplified code:
-        add(key, value) {
-          const index = this._hash(key);
-          this.table[index] = [key, value];
-          this.size++;
-        }*/
         let index = this.hash(key);
         let bucket;
         if (index < 0 || index >= this.buckets.length) {
@@ -203,12 +197,11 @@ export class HashMap {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
         }
+        //Why are existing ones replaced instead of linked onto?
         bucket.append(newNode);
-        /*} else {
-          bucket.head.next = {key, value: newNode};
-        }*/
         //if array length exceeds load factor, copy to new hashmap with double capactiy
-        if (this.capacity * this.loadFactor >= this.lengthOfArray) {
+        if (this.capacity * this.loadFactor > this.lengthOfArray) {
+          console.log(`capacity: ${this.capacity}`);
           this.capacity *= 2;
           let buckets = this.buckets;
           let newHashMap = new HashMap(this.capacity);
