@@ -197,17 +197,17 @@ export class HashMap {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
         }
-        //Why are existing ones replaced instead of linked onto?
         bucket.append(newNode);
-        console.log(`capacity (${this.capacity}) * load factor (${this.loadFactor})`);
-        
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
-          console.log(`Current capacity (${this.capacity}) exceeds load factor (${this.loadFactor})`);
+          console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);
+          let entriesArray = this.entries();
+          console.log(`entriesArray: ${entriesArray}`);
           this.capacity *= 2;
           this.clear();
           console.log(this);
-          let entriesArray = this.entries();
+          console.log(`capacity: ${this.capacity}`);
+          //make sure this works even when there is more than one node in a bucket
           for (let i = 0; i < entriesArray.length; i++) {
             let entry = entriesArray[i];
             let key = entry[0];
@@ -269,6 +269,7 @@ export class HashMap {
     }
 
     //correct so that it works to run through each bucket, not just on buckets
+    //nodeAt is a LinkedList method, not HashMap method
     keys() {
         let keysArray = [];
         for (let i = 0; i < this.capacity; i++) {
