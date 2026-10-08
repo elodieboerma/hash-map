@@ -223,18 +223,26 @@ export class HashMap {
         if (index < 0 || index >= this.buckets.length) {
           throw new Error("Trying to access index out of bounds");
         }
-        if (this.nodeAt(index) == undefined) {
+        let bucket = this.buckets[index];
+        //let node = bucket.nodeAt(0);
+        /*if (this.nodeAt(index) == undefined) {
             return null;
-        }
-        return this.nodeAt(index).head.next.value;
+        }*/
+        bucket.forEach((node) => {
+            if (node.key.key === key) {
+                return node.key.value;
+            }
+        });
+        return undefined;
     }
 
     has(key) {
         let index = this.hash(key);
         if (index < 0 || index >= this.buckets.length) {
-  throw new Error("Trying to access index out of bounds");
-}
-        if (this.nodeAt(index) == undefined) {
+          throw new Error("Trying to access index out of bounds");
+        }
+        let bucket = this.buckets[index];
+        if (bucket == undefined) {
             return false;
         }
         return true;
@@ -242,13 +250,14 @@ export class HashMap {
 
     remove(key) {
         let index = this.hash(key);
-        if (index < 0 || index >= buckets.length) {
-  throw new Error("Trying to access index out of bounds");
-}
-        if (this.nodeAt(index) == undefined) {
+        if (index < 0 || index >= this.buckets.length) {
+          throw new Error("Trying to access index out of bounds");
+        }
+        let bucket = this.buckets[index];
+        if (bucket == undefined) {
             return false;
         } else {
-            this.nodeAt(index).pop();
+            bucket.remove(key);
             return true;
         }
     }
