@@ -228,6 +228,7 @@ export class HashMap {
             }
           }
           //make sure hashmap is updated to new buckets and capacity
+          this.clear();
           this.buckets = newHashMap.buckets;
           this.capacity = newHashMap.capacity;
         }        
@@ -281,7 +282,7 @@ export class HashMap {
     }
 
     clear() {
-        this.size = 0;
+        this.buckets = [];
     }
 
     keys() {
