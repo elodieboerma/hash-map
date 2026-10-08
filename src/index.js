@@ -268,19 +268,23 @@ export class HashMap {
         this.buckets = [];
     }
 
-    //correct so that it works to run through each bucket, not just on buckets
-    //nodeAt is a LinkedList method, not HashMap method
+    //nodeAt() and toString() are LinkedList methods, not HashMap methods
     keys() {
         let keysArray = [];
-        for (let i = 0; i < this.capacity; i++) {
-            if (this.nodeAt(i) != undefined) {
-                keysArray.push(this.nodeAt(i));
+        for (let i = 0; i < this.buckets.length; i++) {
+          if (this.buckets[i] != undefined) {
+            for (let j = 0; j < this.buckets[i].size(); j++) {
+              let node = this.buckets[i].nodeAt(j);
+              if (node != undefined) {
+                keysArray.push(node.key.key);
+              }
             }
+          }
         }
+        console.log(`keysArray: ${keysArray}`);
         return keysArray;
     }
 
-    //correct so that it works to run through each bucket, not just on buckets
     values() {
         let valuesArray = [];
         let keysArray = this.keys();
