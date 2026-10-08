@@ -201,36 +201,39 @@ export class HashMap {
         if (bucket == undefined) {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
-          bucket.append(newNode);
-        } else {
-          bucket.head.next = {key, value: newNode};
         }
+        bucket.append(newNode);
+        /*} else {
+          bucket.head.next = {key, value: newNode};
+        }*/
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor >= this.lengthOfArray) {
           this.capacity *= 2;
           let buckets = this.buckets;
           let newHashMap = new HashMap(this.capacity);
-          for (bucket in buckets) {
+          //for (bucket in buckets) {
+          for (let i = 0; i < buckets.length; i++) {
+            let bucket = buckets[i];
+            console.log(bucket);
             if (bucket != undefined) {
               //update existingKey once nodes are created with both keys and values
               //also make sure to copy all nodes in the linked list, not just the first key/value pair
               for (let node = bucket.head; node != null; node = node.next) {
                 let existingKey = node.key;
+                console.log(existingKey);
                 let index = newHashMap.hash(existingKey);
                 var newBucket = newHashMap.buckets[index];
               }
               //Are both parts of this really needed?
-              if (newBucket == undefined) {
+              /*if (newBucket == undefined) {
                 newBucketLinkedList = new LinkedList();
                 newBucket.append(newBucketLinkedList);
-              } else {
+              } else {*/
                 newBucket.append(bucket);
-              }
+              //}
             }
           }
-          //then delete this hashmap somehow and make sure all actions are now
-          //performed on the new hashmap?? or just empty this hashmap and then add
-          //the new hashmap info to it?
+          //make sure hashmap is updated to new buckets and capacity
           this.buckets = newHashMap.buckets;
           this.capacity = newHashMap.capacity;
         }        
@@ -279,7 +282,7 @@ export class HashMap {
           count++;
         }
       }
-      console.log(`count: ${count}`);
+      console.log(`lengthOfArray: ${count}`);
       return count;
     }
 
