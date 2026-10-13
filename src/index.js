@@ -192,16 +192,21 @@ export class HashMap {
           throw new Error("Trying to access index out of bounds");
         }
         let newNode = new Node(key, value);
+        console.log(`${key} (${value}): ${index}`);
         if (bucket == undefined) {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
         }
         bucket.append(newNode);
+        //for some reason if I use this line instead, it says cannot read property
+        //of undefined when reading length in line 181 (hash()) - can't figure out why, but this works
+        //it also makes entriesArray empty, puts two extra comments between each
+        //entry if I use this AND the line above
+        //bucket.append(key,value);
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
           console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);
           this.capacity *= 2;
-          console.log(`capacity: ${this.capacity}`);
           let entriesArray = this.entries();
           this.clear();
           //make sure this works even when there is more than one node in a bucket
@@ -309,7 +314,6 @@ export class HashMap {
     entries() {
         let keysArray = this.keys();
         let valuesArray = this.values();
-        console.log(`valuesArray: ${valuesArray}`);
         let entriesArray = [];
         for (let i = 0; i < keysArray.length; i++) {
             entriesArray.push([keysArray[i], valuesArray[i]]);
