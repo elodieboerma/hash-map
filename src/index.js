@@ -182,14 +182,13 @@ export class HashMap {
             hashCode = primeNumber * hashCode + key.charCodeAt(i);
             hashCode = hashCode % this.capacity;
         }
-        console.log(`${key}: ${hashCode}`);
         return hashCode;
     }
 
     set(key, value) {
         let index = this.hash(key);
         let bucket;
-        if (index < 0 || index >= this.buckets.length) {
+        if (index < 0 || index >= this.capacity) {
           throw new Error("Trying to access index out of bounds");
         }
         let newNode = new Node(key, value);
@@ -204,7 +203,6 @@ export class HashMap {
           this.capacity *= 2;
           console.log(`capacity: ${this.capacity}`);
           let entriesArray = this.entries();
-          console.log(`entriesArray: ${entriesArray}`);
           this.clear();
           console.log(this);
           //make sure this works even when there is more than one node in a bucket
@@ -219,7 +217,6 @@ export class HashMap {
 
     get(key) {
         let index = this.hash(key);
-        console.log(`key(index): ${key}(${index})`);
         if (index < 0 || index >= this.capacity) {
           throw new Error("Trying to access index out of bounds");
         }
@@ -272,7 +269,6 @@ export class HashMap {
           count++;
         }
       }
-      console.log(`lengthOfArray: ${count}`);
       return count;
     }
 
@@ -308,7 +304,6 @@ export class HashMap {
     //correct so that it works to run through each bucket, not just on buckets
     entries() {
         let keysArray = this.keys();
-        console.log(`keysArray: ${keysArray}`);
         let valuesArray = this.values();
         console.log(`valuesArray: ${valuesArray}`);
         let entriesArray = [];
