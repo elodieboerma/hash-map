@@ -201,12 +201,12 @@ export class HashMap {
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
           console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);
+          this.capacity *= 2;
+          console.log(`capacity: ${this.capacity}`);
           let entriesArray = this.entries();
           console.log(`entriesArray: ${entriesArray}`);
-          this.capacity *= 2;
           this.clear();
           console.log(this);
-          console.log(`capacity: ${this.capacity}`);
           //make sure this works even when there is more than one node in a bucket
           for (let i = 0; i < entriesArray.length; i++) {
             let entry = entriesArray[i];
@@ -219,15 +219,22 @@ export class HashMap {
 
     get(key) {
         let index = this.hash(key);
-        if (index < 0 || index >= this.buckets.length) {
+        console.log(`key(index): ${key}(${index})`);
+        if (index < 0 || index >= this.capacity) {
           throw new Error("Trying to access index out of bounds");
         }
-        let bucket = this.buckets[index];
-        bucket.forEach((node) => {
+        let bucket;
+        if (bucket == undefined) {
+          bucket = new LinkedList();
+          this.buckets[index] = bucket;
+        }
+        bucket = this.buckets[index];
+        for (let i = 0; i == null; i++) {
+            let node = bucket.nodeAt(i);
             if (node.key.key === key) {
                 return node.key.value;
             }
-        });
+        }
         return undefined;
     }
 
@@ -285,7 +292,6 @@ export class HashMap {
             }
           }
         }
-        console.log(`keysArray: ${keysArray}`);
         return keysArray;
     }
 
@@ -302,11 +308,14 @@ export class HashMap {
     //correct so that it works to run through each bucket, not just on buckets
     entries() {
         let keysArray = this.keys();
+        console.log(`keysArray: ${keysArray}`);
         let valuesArray = this.values();
+        console.log(`valuesArray: ${valuesArray}`);
         let entriesArray = [];
         for (let i = 0; i < keysArray.length; i++) {
             entriesArray.push([keysArray[i], valuesArray[i]]);
         }
+        console.log(`entriesArray: ${entriesArray}`);
         return entriesArray;
     }
 }
