@@ -204,7 +204,6 @@ export class HashMap {
           console.log(`capacity: ${this.capacity}`);
           let entriesArray = this.entries();
           this.clear();
-          console.log(this);
           //make sure this works even when there is more than one node in a bucket
           for (let i = 0; i < entriesArray.length; i++) {
             let entry = entriesArray[i];
@@ -293,10 +292,15 @@ export class HashMap {
 
     values() {
         let valuesArray = [];
-        let keysArray = this.keys();
-        for (let key = 0; key < keysArray.length; key++) {
-            let value = this.get(keysArray[key]);
-            valuesArray.push(value);
+        for (let i = 0; i < this.buckets.length; i++) {
+          if (this.buckets[i] != undefined) {
+            for (let j = 0; j < this.buckets[i].size(); j++) {
+              let node = this.buckets[i].nodeAt(j);
+              if (node != undefined) {
+                valuesArray.push(node.key.value);
+              }
+            }
+          }
         }
         return valuesArray;
     }
