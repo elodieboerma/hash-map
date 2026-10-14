@@ -264,11 +264,21 @@ export class HashMap {
           throw new Error("Trying to access index out of bounds");
         }
         let bucket = this.buckets[index];
-        if (bucket == undefined) {
+        if (typeof bucket !== "object" || bucket === null) {
             return false;
         } else {
-            bucket.remove(key);
-            return true;
+          for (let i = 0; i < bucket.size(); i++) {
+            let prevNode = bucket.nodeAt(i - 1);
+            let currentNode = bucket.nodeAt(i);
+            if (currentNode.key.key === key) {
+                if (prevNode) {
+                    prevNode.next = currentNode.next;
+                } else {
+                    bucket.head = currentNode.next;
+                }
+                return true;
+            }
+          }
         }
     }
 

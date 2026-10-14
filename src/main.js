@@ -50,10 +50,12 @@ console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 //for has(key)
 console.log(`has(banana): ${test.has('banana')}`);
 
+//removes it from the hashmap when printed before AND after these lines execute
 //for remove(key)
 console.log(test.remove('carrot'));
 console.log(test);
 console.log(test.capacity);
+//returns undefined
 console.log(test.length);
 
 /*
