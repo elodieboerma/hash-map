@@ -240,10 +240,13 @@ export class HashMap {
           throw new Error("Trying to access index out of bounds");
         }
         let bucket = this.buckets[index];
-        if (bucket == undefined) {
-            return false;
+        for (let i = 0; i < bucket.size(); i++) {
+            let node = bucket.nodeAt(i);
+            if (node.key.key === key) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     remove(key) {
