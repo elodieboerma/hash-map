@@ -35,7 +35,7 @@ console.log(`capacity: ${test.capacity}`);
 console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 
 //for get(key)
-//console.log(`get(apple): ${test.get('apple')}`);
+console.log(`get(apple): ${test.get('apple')}`);
 
 //indexes b/f doubling capacity are same as after
 //but they are printed correctly with their keys and values, just not in hashmap
@@ -45,16 +45,15 @@ console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 
 //also apple no longer exists b/f or after doubling capacity
 
+/*
 //for has(key)
 console.log(`has(banana): ${test.has('banana')}`);
+*/
 
+/*
 //for remove(key)
 console.log(`carrot removed: ${test.remove('carrot')}`);
-console.log(`capacity: ${test.capacity}`);
-
-//for length
-//stays the same even if a bucket has no nodes left bc it still has a linked list head
-console.log(`lengthOfArray: ${test.lengthOfArray()}`);
+/*
 
 /*
 //for clear
@@ -64,6 +63,12 @@ console.log(`capacity: ${test.capacity}`);
 console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 */
 
+/*
 console.log(`keys: ${test.keys()}`);
 console.log(`values: ${test.values()}`);
 console.log(`entries: ${test.entries()}`);
+*/
+
+console.log(test);
+console.log(`capacity: ${test.capacity}`);
+console.log(`lengthOfArray: ${test.lengthOfArray()}`);
