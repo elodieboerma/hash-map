@@ -286,7 +286,7 @@ export class HashMap {
       let count = 0;
       for (let i = 0; i < this.capacity; i++) {
         let bucket = this.buckets[i];
-        if (bucket != undefined) {
+        if (bucket !== undefined) {
           count++;
         }
       }
