@@ -212,7 +212,6 @@ export class HashMap {
           this.capacity *= 2;
           let entriesArray = this.entries();
           this.clear();
-          //make sure this works even when there is more than one node in a bucket
           for (let i = 0; i < entriesArray.length; i++) {
             let entry = entriesArray[i];
             let key = entry[0];
@@ -329,7 +328,6 @@ export class HashMap {
         return valuesArray;
     }
 
-    //correct so that it works to run through each bucket, not just on buckets
     entries() {
         let keysArray = this.keys();
         let valuesArray = this.values();
