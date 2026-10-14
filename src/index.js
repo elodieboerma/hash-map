@@ -197,7 +197,17 @@ export class HashMap {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
         }
+        if (this.has(key)) {
+          for (let i = 0; i < bucket.size(); i++) {
+            let node = bucket.nodeAt(i);
+            if (node.key.key === key) {
+              node.key.value = value;
+              return;
+            }
+          }
+        }
         bucket.append(newNode);
+        //bucket.append(key,value);
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
           console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);
