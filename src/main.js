@@ -55,8 +55,7 @@ console.log(`has(banana): ${test.has('banana')}`);
 console.log(test.remove('carrot'));
 console.log(test);
 console.log(test.capacity);
-//returns undefined
-console.log(test.length);
+console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 
 /*
 //for length
