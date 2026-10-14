@@ -6,7 +6,6 @@ class Node {
   }
 }
 
-
 class LinkedList {
   constructor() {
     this.head = null;
@@ -167,174 +166,173 @@ class LinkedList {
   }
 }
 
-
 export class HashMap {
-    constructor(capacity = 16) {
-        this.capacity = capacity;
-        this.buckets = new Array(this.capacity);
-        this.loadFactor = 0.75;
-    }
+  constructor(capacity = 16) {
+    this.capacity = capacity;
+    this.buckets = new Array(this.capacity);
+    this.loadFactor = 0.75;
+  }
 
-    hash(key) {
-        let hashCode = 0;
-        let primeNumber  = 31;
-        for (let i = 0; i < key.length; i++) {
-            hashCode = primeNumber * hashCode + key.charCodeAt(i);
-            hashCode = hashCode % this.capacity;
-        }
-        return hashCode;
+  hash(key) {
+    let hashCode = 0;
+    let primeNumber = 31;
+    for (let i = 0; i < key.length; i++) {
+      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      hashCode = hashCode % this.capacity;
     }
+    return hashCode;
+  }
 
-    set(key, value) {
-        let index = this.hash(key);
-        let bucket = this.buckets[index];
-        if (index < 0 || index >= this.capacity) {
-          throw new Error("Trying to access index out of bounds");
-        }
-        let newNode = new Node(key, value);
-        console.log(`${key} (${value}): ${index}`);
-        if (typeof bucket !== "object" || bucket === null) {
-          bucket = new LinkedList();
-          this.buckets[index] = bucket;
-        }
-        if (this.has(key)) {
-          for (let i = 0; i < bucket.size(); i++) {
-            let node = bucket.nodeAt(i);
-            if (node.key.key === key) {
-              node.key.value = value;
-              return;
-            }
-          }
-        }
-        bucket.append(newNode);
-        //if array length exceeds load factor, copy to new hashmap with double capactiy
-        if (this.capacity * this.loadFactor < this.lengthOfArray()) {
-          this.capacity *= 2;
-          let entriesArray = this.entries();
-          this.clear();
-          for (let i = 0; i < entriesArray.length; i++) {
-            let entry = entriesArray[i];
-            let key = entry[0];
-            let value = entry[1];
-            this.set(key, value);
-          }
-        }        
+  set(key, value) {
+    let index = this.hash(key);
+    let bucket = this.buckets[index];
+    if (index < 0 || index >= this.capacity) {
+      throw new Error("Trying to access index out of bounds");
     }
-
-    get(key) {
-        let index = this.hash(key);
-        let bucket = this.buckets[index];
-        if (index < 0 || index >= this.capacity) {
-          throw new Error("Trying to access index out of bounds");
-        }
-        if (typeof bucket !== "object" || bucket === null) {
-          bucket = new LinkedList();
-          this.buckets[index] = bucket;
-        }
-        bucket = this.buckets[index];
-        console.log("apple set");
-        for (let i = 0; i < bucket.size(); i++) {
-            let node = bucket.nodeAt(i);
-            console.log("apple set");
-            if (node.key.key === key) {
-              console.log("apple set");
-              return node.key.value;
-            }
-        }
-        return undefined;
+    let newNode = new Node(key, value);
+    console.log(`${key} (${value}): ${index}`);
+    if (typeof bucket !== "object" || bucket === null) {
+      bucket = new LinkedList();
+      this.buckets[index] = bucket;
     }
-
-    has(key) {
-        let index = this.hash(key);
-        if (index < 0 || index >= this.buckets.length) {
-          throw new Error("Trying to access index out of bounds");
-        }
-        let bucket = this.buckets[index];
-        for (let i = 0; i < bucket.size(); i++) {
-            let node = bucket.nodeAt(i);
-            if (node.key.key === key) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    remove(key) {
-        let index = this.hash(key);
-        if (index < 0 || index >= this.buckets.length) {
-          throw new Error("Trying to access index out of bounds");
-        }
-        let bucket = this.buckets[index];
-        if (typeof bucket !== "object" || bucket === null) {
-            return false;
-        } else {
-          for (let i = 0; i < bucket.size(); i++) {
-            let prevNode = bucket.nodeAt(i - 1);
-            let currentNode = bucket.nodeAt(i);
-            if (currentNode.key.key === key) {
-                if (prevNode) {
-                    prevNode.next = currentNode.next;
-                } else {
-                    bucket.head = currentNode.next;
-                }
-                return true;
-            }
-          }
-        }
-    }
-
-    lengthOfArray() {
-      let count = 0;
-      for (let i = 0; i < this.capacity; i++) {
-        let bucket = this.buckets[i];
-        if (bucket !== undefined) {
-          count++;
+    if (this.has(key)) {
+      for (let i = 0; i < bucket.size(); i++) {
+        let node = bucket.nodeAt(i);
+        if (node.key.key === key) {
+          node.key.value = value;
+          return;
         }
       }
-      return count;
     }
-
-    clear() {
-        this.buckets = [];
+    bucket.append(newNode);
+    //if array length exceeds load factor, copy to new hashmap with double capactiy
+    if (this.capacity * this.loadFactor < this.lengthOfArray()) {
+      this.capacity *= 2;
+      let entriesArray = this.entries();
+      this.clear();
+      for (let i = 0; i < entriesArray.length; i++) {
+        let entry = entriesArray[i];
+        let key = entry[0];
+        let value = entry[1];
+        this.set(key, value);
+      }
     }
+  }
 
-    keys() {
-        let keysArray = [];
-        for (let i = 0; i < this.buckets.length; i++) {
-          if (this.buckets[i] != undefined) {
-            for (let j = 0; j < this.buckets[i].size(); j++) {
-              let node = this.buckets[i].nodeAt(j);
-              if (node != undefined) {
-                keysArray.push(node.key.key);
-              }
-            }
+  get(key) {
+    let index = this.hash(key);
+    let bucket = this.buckets[index];
+    if (index < 0 || index >= this.capacity) {
+      throw new Error("Trying to access index out of bounds");
+    }
+    if (typeof bucket !== "object" || bucket === null) {
+      bucket = new LinkedList();
+      this.buckets[index] = bucket;
+    }
+    bucket = this.buckets[index];
+    console.log("apple set");
+    for (let i = 0; i < bucket.size(); i++) {
+      let node = bucket.nodeAt(i);
+      console.log("apple set");
+      if (node.key.key === key) {
+        console.log("apple set");
+        return node.key.value;
+      }
+    }
+    return undefined;
+  }
+
+  has(key) {
+    let index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+    let bucket = this.buckets[index];
+    for (let i = 0; i < bucket.size(); i++) {
+      let node = bucket.nodeAt(i);
+      if (node.key.key === key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  remove(key) {
+    let index = this.hash(key);
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+    let bucket = this.buckets[index];
+    if (typeof bucket !== "object" || bucket === null) {
+      return false;
+    } else {
+      for (let i = 0; i < bucket.size(); i++) {
+        let prevNode = bucket.nodeAt(i - 1);
+        let currentNode = bucket.nodeAt(i);
+        if (currentNode.key.key === key) {
+          if (prevNode) {
+            prevNode.next = currentNode.next;
+          } else {
+            bucket.head = currentNode.next;
+          }
+          return true;
+        }
+      }
+    }
+  }
+
+  lengthOfArray() {
+    let count = 0;
+    for (let i = 0; i < this.capacity; i++) {
+      let bucket = this.buckets[i];
+      if (bucket !== undefined) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  clear() {
+    this.buckets = [];
+  }
+
+  keys() {
+    let keysArray = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i] != undefined) {
+        for (let j = 0; j < this.buckets[i].size(); j++) {
+          let node = this.buckets[i].nodeAt(j);
+          if (node != undefined) {
+            keysArray.push(node.key.key);
           }
         }
-        return keysArray;
+      }
     }
+    return keysArray;
+  }
 
-    values() {
-        let valuesArray = [];
-        for (let i = 0; i < this.buckets.length; i++) {
-          if (this.buckets[i] != undefined) {
-            for (let j = 0; j < this.buckets[i].size(); j++) {
-              let node = this.buckets[i].nodeAt(j);
-              if (node != undefined) {
-                valuesArray.push(node.key.value);
-              }
-            }
+  values() {
+    let valuesArray = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i] != undefined) {
+        for (let j = 0; j < this.buckets[i].size(); j++) {
+          let node = this.buckets[i].nodeAt(j);
+          if (node != undefined) {
+            valuesArray.push(node.key.value);
           }
         }
-        return valuesArray;
+      }
     }
+    return valuesArray;
+  }
 
-    entries() {
-        let keysArray = this.keys();
-        let valuesArray = this.values();
-        let entriesArray = [];
-        for (let i = 0; i < keysArray.length; i++) {
-            entriesArray.push([keysArray[i], valuesArray[i]]);
-        }
-        return entriesArray;
+  entries() {
+    let keysArray = this.keys();
+    let valuesArray = this.values();
+    let entriesArray = [];
+    for (let i = 0; i < keysArray.length; i++) {
+      entriesArray.push([keysArray[i], valuesArray[i]]);
     }
+    return entriesArray;
+  }
 }
