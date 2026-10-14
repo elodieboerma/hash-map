@@ -67,13 +67,13 @@ console.log(test.clear());
 console.log(test);
 console.log(test.capacity);
 console.log(test.length);
+*/
 
 //for keys()
-console.log(test.keys());
+console.log(`keys: ${test.keys()}`);
 
 //for values()
-console.log(test.values());
+console.log(`values: ${test.values()}`);
 
 //for entries()
-console.log(test.entries());
-*/
+console.log(`entries: ${test.entries()}`);

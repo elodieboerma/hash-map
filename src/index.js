@@ -335,7 +335,6 @@ export class HashMap {
         for (let i = 0; i < keysArray.length; i++) {
             entriesArray.push([keysArray[i], valuesArray[i]]);
         }
-        console.log(`entriesArray: ${entriesArray}`);
         return entriesArray;
     }
 }
