@@ -15,27 +15,26 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(`capacity: ${test.capacity}`);
-console.log(`lengthOfArray: ${test.lengthOfArray()}`);
-
+/*
 test.set('apple', 'pink')
 test.set('dogs', 'red')
 test.set('kite', 'brown')
-console.log(`capacity: ${test.capacity}`);
-console.log(`lengthOfArray: ${test.lengthOfArray()}`);
+*/
 
+/*
 test.set('moons', 'silver')
-console.log(`capacity: ${test.capacity}`);
-console.log(`lengthOfArray: ${test.lengthOfArray()}`);
+*/
 
+/*
 test.set('elephant', 'white');
 test.set('grapes', 'green');
 test.set('jacket', 'red');
-console.log(`capacity: ${test.capacity}`);
-console.log(`lengthOfArray: ${test.lengthOfArray()}`);
+*/
 
+/*
 //for get(key)
 console.log(`get(apple): ${test.get('apple')}`);
+*/
 
 //indexes b/f doubling capacity are same as after
 //but they are printed correctly with their keys and values, just not in hashmap

@@ -209,7 +209,6 @@ export class HashMap {
         bucket.append(newNode);
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
-          console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);
           this.capacity *= 2;
           let entriesArray = this.entries();
           this.clear();
@@ -225,19 +224,22 @@ export class HashMap {
 
     get(key) {
         let index = this.hash(key);
+        let bucket = this.buckets[index];
         if (index < 0 || index >= this.capacity) {
           throw new Error("Trying to access index out of bounds");
         }
-        let bucket;
         if (typeof bucket !== "object" || bucket === null) {
           bucket = new LinkedList();
           this.buckets[index] = bucket;
         }
         bucket = this.buckets[index];
-        for (let i = 0; i == null; i++) {
+        console.log("apple set");
+        for (let i = 0; i < bucket.size(); i++) {
             let node = bucket.nodeAt(i);
+            console.log("apple set");
             if (node.key.key === key) {
-                return node.key.value;
+              console.log("apple set");
+              return node.key.value;
             }
         }
         return undefined;
