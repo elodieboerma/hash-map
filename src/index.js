@@ -207,7 +207,6 @@ export class HashMap {
           }
         }
         bucket.append(newNode);
-        //bucket.append(key,value);
         //if array length exceeds load factor, copy to new hashmap with double capactiy
         if (this.capacity * this.loadFactor < this.lengthOfArray()) {
           console.log(`Current array length (${this.lengthOfArray()}) exceeds capacity*load factor(${this.capacity} * ${this.loadFactor})`);

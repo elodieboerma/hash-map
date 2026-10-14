@@ -38,12 +38,17 @@ console.log(test);
 console.log(`capacity: ${test.capacity}`);
 console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 
-/*
 //for get(key)
-console.log(test.get('apple'));
+//console.log(`get(apple): ${test.get('apple')}`);
+
+//indexes b/f doubling capacity are same as after
+//but they are printed correctly with their keys and values, just not in hashmap
+//length property inside of hashmap after doubling capacity is equal to number of
+//unique keys times two, plus the three values changed after doubling
+//also apple no longer exists b/f or after doubling capacity
 
 //for has(key)
-console.log(test.has('banana'));
+console.log(`has(banana): ${test.has('banana')}`);
 
 //for remove(key)
 console.log(test.remove('carrot'));
@@ -51,6 +56,7 @@ console.log(test);
 console.log(test.capacity);
 console.log(test.length);
 
+/*
 //for length
 console.log(test.length);
 
