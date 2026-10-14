@@ -31,8 +31,6 @@ console.log(test);
 console.log(`capacity: ${test.capacity}`);
 console.log(`lengthOfArray: ${test.lengthOfArray()}`);
 
-//need to be able to add a new value for a new key
-//currently values are just overwritten even if the key is different
 test.set('elephant', 'white');
 test.set('grapes', 'green');
 test.set('jacket', 'red');
